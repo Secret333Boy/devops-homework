@@ -21,4 +21,6 @@ jobs:
     - name: Lint
       run: npm run lint
     - name: Build the Docker image
-      run: docker build . --file Dockerfile -t my-image:$(date +%s)
+      run: docker build . --file Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/my-image:$(date +%s)
+    - name: Login into docker
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
