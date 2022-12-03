@@ -5,8 +5,7 @@ on:
     branches: ["master"]
   pull_request:
     branches: ["master"]
-env:
-  tag: $(date +%s)
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,9 +20,11 @@ jobs:
       run: npm ci
     - name: Lint
       run: npm run lint
+    - name: Generate_tag
+      run: echo "tag=$(date +%s)" >> $GITHUB_OUTPUT
     - name: Build the Docker image
-      run: docker build . --file Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/my-image:$tag
+      run: docker build . --file Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/my-image:${{ steps.Generate_tag.outputs.tag }}
     - name: Login into docker
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: Push image
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/my-image:$tag
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/my-image:${{ steps.Generate_tag.outputs.tag }}
