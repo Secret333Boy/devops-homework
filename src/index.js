@@ -1,12 +1,12 @@
-import http from "http";
+import http from 'http'
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000
 
 http
   .createServer((_req, res) => {
-    res.writeHead(200);
-    res.end("Hello world!");
+    res.writeHead(200)
+    res.end('Hello world!')
   })
   .listen(PORT, () => {
-    console.log("Server has been started on port " + PORT);
-  });
+    console.log('Server has been started on port ' + PORT)
+  })

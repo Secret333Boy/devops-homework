@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node ./src/index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/Secret333Boy/devops-homework/issues"
   },
-  "homepage": "https://github.com/Secret333Boy/devops-homework#readme"
+  "homepage": "https://github.com/Secret333Boy/devops-homework#readme",
+  "devDependencies": {
+    "eslint": "^8.29.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.5.1",
+    "eslint-plugin-promise": "^6.1.1"
+  }
 }
