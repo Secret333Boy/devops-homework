@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devops-app-pod
+  template:
+    metadata:
+      labels:
+        app: devops-app-pod
+    spec:
+      containers:
+        - image: secret333boy/devops-app-service:1.0
+          name: devops-app-container
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "250m"
